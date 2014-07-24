@@ -23,5 +23,16 @@ public class balance {
 		if(Math.abs(left-right)>=2) return -1;
 		else return Math.max(left,right)+1;
 	}
-
+	
+	public static int balanced_2(Node cur){
+		if(cur==null) return 0;
+		int left=balanced_2(cur.left);
+		int right=balanced_2(cur.right);
+		if(left<0 || right<0) return -1;
+		if(Math.abs(left-right)>=2) return -1;
+		return Math.max(right, left)+1;
+		
+	}
+	
+	
 }
