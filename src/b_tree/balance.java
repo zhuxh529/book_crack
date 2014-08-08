@@ -7,9 +7,9 @@ public class balance {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Node n=BTreePrinterTest.test3();
+		Node n=BTreePrinterTest.test1();
 		BTreePrinter.printNode(n);
-		System.out.println(balanced(n)>0?true:false);
+		System.out.println(balanced_3(n)>0?true:false);
 	}
 	
 	public static int balanced(Node cur){
@@ -31,6 +31,19 @@ public class balance {
 		if(left<0 || right<0) return -1;
 		if(Math.abs(left-right)>=2) return -1;
 		return Math.max(right, left)+1;
+		
+	}
+	
+	public static int balanced_3(Node n){
+		if(n==null) return 0;
+		
+		int left=balanced_3(n.left);
+		int right=balanced_3(n.right);
+		if(left<0 || right<0) return -1;
+		if(Math.abs(left-right)>1) return -1;
+		
+		return Math.max(left, right)+1;
+		
 		
 	}
 	

@@ -7,4 +7,7 @@ class Node<T extends Comparable<?>> {
     public Node(T data) {
         this.data = data;
         left=right=null;
-    }}
+    }
+    
+
+}

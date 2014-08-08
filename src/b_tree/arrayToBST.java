@@ -21,6 +21,17 @@ public class arrayToBST {
 	
 	}
 	
+	public static Node transform2(int[] arr, int l, int r ){
+		
+		if(l>r) return null;
+		int mid=(l+r)/2;
+		Node n=new Node(arr[mid]);
+		n.left=transform(arr,l, mid-1);
+		n.right=transform(arr, mid+1, r);
+		return n;
+		
+	}
+	
 	
 	
 }
