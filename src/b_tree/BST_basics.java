@@ -9,9 +9,10 @@ public class BST_basics {
 		insert(4,head);
 		insert(1,head);
 		insert(10,head);
-		insert(7,head);
+		insert(6,head);
 		insert(8,head);
-		//delete(8, head, head);
+		insert(7,head);
+		delete(5, head, head);
 		BTreePrinter.printNode(head);
 	}
 	
@@ -36,7 +37,7 @@ public class BST_basics {
 		
 	}
 	
-	public static boolean delete(int v, Node node, Node parent){
+	public static boolean delete(Comparable v, Node node, Node parent){
 		if(node.data.compareTo(v)>0 ){
 			if(node.left==null){
 				return false;
@@ -64,16 +65,37 @@ public class BST_basics {
 				
 			}
 			else if(l!=null && r!=null){ //two leaf
+				Comparable pred=findPre(node.left);	
+				
+				delete(pred, node.left,node);
+				node.data=pred;
 				
 			}
 			else{//one leaf
+				Node replace=l==null?r:l;
+				System.out.println(replace.data);
+				if(parent.left==null){parent.right=replace;return true;}
+				else if(parent.right==null) {parent.right=replace;return true;}
 				
+				if(parent.left.data.compareTo(node.data)==0){
+					parent.left=replace;
+				}
+				else{
+					parent.right=replace;
+				}
 			}
 			
 		}
 		
 		
 		return true;
+	}
+	
+	public static Comparable findPre(Node n){
+		
+		if(n.right==null) return n.data; 
+		
+		return findPre(n.right);
 	}
 	
 }
